@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Under Construction">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="Leandro Magalhaes" content="Make Labs">
+    <link rel="icon" href="./pictures/other/CFPL Logo.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="./pictures/other/CFPL Logo.png">
+    <link rel="stylesheet" href=".main/styles.css">
+    <script src="countdown.js" defer></script>
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: url('./pictures/green medow.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.18);
+            padding: 40px 15vw;
+            border-radius: 30px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+            text-align: center;
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.3);
+            opacity: 0.95;
+            max-width: 95vw;
+            width: 500px;
+        }
+        .facebook-link {
+            position: absolute;
+            top: 50px;
+            right: 100px;
+            z-index: 2;
+            text-decoration: none;
+        }
+        .Logo img {
+            width: 80px;
+            height: 180px;
+            margin-top: -20px;
+        }
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 95vw;
+                padding: 24px 2vw;
+                border-radius: 18px;
+            }
+            .facebook-link {
+                position: static;
+                display: block;
+                margin: 0 auto 16px auto;
+                text-align: right;
+            }
+            .Logo img {
+                width: 60px;
+                height: 90px;
+            }
+            #countdown {
+                gap: 12px;
+                margin-top: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Facebook Icon Link -->
+        <a href="https://www.facebook.com/profile.php?id=61574791907639" target="_blank" class="facebook-link">
+            <svg width="45" height="45" viewBox="0 0 32 32" fill="#1877f3" xmlns="http://www.w3.org/2000/svg" style="background: white; border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <rect width="32" height="32" rx="16" fill="#fff"/>
+                <path d="M21.5 16.01h-3.01v9.49h-3.93v-9.49h-2.01v-3.22h2.01v-2.06c0-2.36 1.13-4.01 4.36-4.01h2.68v3.22h-1.68c-1.26 0-1.34.47-1.34 1.34v1.51h3.02l-.4 3.22z" fill="#1877f3"/>
+            </svg>
+        </a>
+        <div class="Logo" style="display: inline;">
+            <img src="./pictures/other/CFPL Logo.png" alt="">
+        </div>
+        <div style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 20px;">
+            <h1>Em Construcao</h1>
+            <p>A pagina encontra-se em construcao.</p>
+        </div>
+        <div>
+            <div id="countdown" template-url="https://github.com/PrajaktaSathe/Countdown-timer.git">
+                <div>
+                    <div style="display: flex; flex-direction: row; gap: 20px;">
+                        <div>
+                            <span id="days" style="font-size: 2em; font-weight: bold;">00</span>
+                            <div>Dias</div>
+                        </div>
+                        <div>
+                            <span id="hours" style="font-size: 2em; font-weight: bold;">00</span>
+                            <div>Horas</div>
+                        </div>
+                        <div>
+                            <span id="minutes" style="font-size: 2em; font-weight: bold;">00</span>
+                            <div>Minutos</div>
+                        </div>
+                        <div>
+                            <span id="seconds" style="font-size: 2em; font-weight: bold;">00</span>
+                            <div>Segundos</div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    // Set your target date here (YYYY-MM-DDTHH:MM:SS)
+                    const targetDate = new Date("2025-08-25T23:59:59").getTime();
+
+                    function updateCountdown() {
+                        const now = new Date().getTime();
+                        const distance = targetDate - now;
+
+                        if (distance < 0) {
+                            document.getElementById("days").textContent = "00";
+                            document.getElementById("hours").textContent = "00";
+                            document.getElementById("minutes").textContent = "00";
+                            document.getElementById("seconds").textContent = "00";
+                            return;
+                        }
+
+                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        document.getElementById("days").textContent = String(days).padStart(2, '0');
+                        document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+                        document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+                        document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+                    }
+
+                    updateCountdown();
+                    setInterval(updateCountdown, 1000);
+                </script>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
